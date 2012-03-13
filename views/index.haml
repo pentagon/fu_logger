@@ -1,0 +1,23 @@
+!!!
+%head
+%body
+  :css
+    td {
+      border: 1px solid #ccc;
+    }
+
+  %h1 File upload stats:
+  %table
+    %tr
+      %td id
+      %td File Name
+      %td UUID
+      %td Remote IP
+      %td Timestamp
+    - @files.each do |f|
+      %tr
+        %td #{f.id}
+        %td #{f.file_name}
+        %td #{f.uuid}
+        %td #{f.ip_address}
+        %td #{f.created_at}
