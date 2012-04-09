@@ -1,11 +1,11 @@
 # Simple Goliath app that proxies http requests for file download and logs those file request into DB.
 
 ## Requirement
- 
- - MySQL
+
  - Goliath - for proxing app
  - Sinatra - for statistics front-end
- - ... and a lots of gems for running listed above ;)
+ - RubyGems, ActiveRecord, EM-Synchrony
+ - MySQL
 
 ## Basic architecture
 The app is supposed to log http requests for files coming from http server and then redirect request to another url to get actual file. Request should be in format:
@@ -18,7 +18,7 @@ for example:
 
 ## Configuration
 Two config files are expected in 'config/':
- 
+
  - `datababase.yml` - db config
  - `services.yml`   - config for proxy redirect, currently contains only `proxy_redirect_url` parameter to set url for redirecting after a request gets logged.
 
@@ -35,3 +35,12 @@ To get started easily there are:
 
 to run corresponding modules.
 
+All file requests get logged into DB table with following fields:
+
+  - `id`
+  - `uuid` (some identifier that allows to differ uniqueness of a download)
+  - `ip_address`
+  - `file_name`
+  - `created_at`
+
+All collected statistics in plain representation are available through Sinatra-based front-end.
