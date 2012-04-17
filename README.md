@@ -24,6 +24,7 @@ Two config files are expected in 'config/':
 
 To setup the app run the following:
 
+    bundle install
     rake db:create
     rake db:migrate
 
